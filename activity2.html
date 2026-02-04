@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Course Registration</title>
+</head>
+<body>
+<h2>Course Registration</h2>
+<form id="courseForm">
+<p>
+<label>Student Name:</label>
+<input type="text" id="studentName">
+</p>
+<p>
+<label>Course:</label>
+<input type="radio" name="course" value="Web"> Web Programming
+<input type="radio" name="course" value="Design"> Graphic Design
+</p>
+<p>
+
+<label>Schedule:</label>
+<input type="checkbox" class="schedule" value="Mon"> Monday
+<input type="checkbox" class="schedule" value="Tue"> Tuesday
+<input type="checkbox" class="schedule" value="Wed"> Wednesday
+<input type="checkbox" class="schedule" value="Thu"> Thursday
+<input type="checkbox" class="schedule" value="Fri"> Friday
+<input type="checkbox" class="schedule" value="Sat"> Saturday
+</p>
+<button type="submit">Register</button>
+</form>
+<p id="message"></p>
+<script>
+document.getElementById('courseForm').addEventListener('submit', function(event){
+    event.preventDefault();
+    const username = document.getElementById('studentName').value.trim();
+    const error = document.getElementById('message');
+    const course = document.querySelector('input[name = "course"]:checked')
+    const schedule = document.querySelectorAll('.schedule:checked');
+
+    if (username === '') {
+        error.innerHTML = "student name cannot be empty";
+        return;
+}
+if(!course) {
+    error.innerHTML = ("pls select a course atleast 1");
+    return;
+}
+if(schedule.length === 0) {
+    error.innerHTML = ("please select a schedule");
+    return;
+}
+})
+</script>
+</body>
+</html>

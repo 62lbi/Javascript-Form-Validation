@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Login Validation</title>
+</head>
+<body>
+<h2>Login Form</h2>
+<form id="loginForm">
+<p>
+<label>Username:</label>
+<input type="text" id="username">
+</p>
+<p>
+<label>Password:</label>
+<input type="password" id="password">
+</p>
+<button type="submit">Login</button>
+</form>
+<p id="message"></p>
+<div id="summary" style="display:none; border:1px solid green; padding:10px; margin-top:20px; background-color:#f0fff0;">
+  <h3>Submitted Data:</h3>
+  <p>Username: <span id="summaryUsername"></span></p>
+  <p>Password: <span id="summaryPassword"></span></p>
+</div>
+<script>
+document.getElementById("loginForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+    const feedback = document.getElementById('message');
+    validateForm();
+    function showError(message) {
+        feedback.innerText = message;
+        feedback.style.color = 'red';
+    }
+    function showSuccess(message) {
+        feedback.innerText = message;
+        feedback.style.color = 'green';
+        const usn = document.getElementById('username').value.trim();
+        const pas = document.getElementById('password').value.trim();
+        document.getElementById('summaryUsername').innerText = usn;
+        document.getElementById('summaryPassword').innerText = pas;
+        document.getElementById('summary').style.display = 'block';
+    }
+
+    function validateForm(){
+        const usn = document.getElementById('username').value.trim();
+        const pas = document.getElementById('password').value.trim();
+
+        if (usn === '') {
+            showError('Username cannot be empty!');
+            return;
+        }
+        if (pas === '') {
+            showError('password cannot be empty!');
+            return;
+        }
+        if (pas.length < 6) {
+            showError('password must be atleast 6 characters!');
+            return;
+        }
+        showSuccess('Login successfully');
+    }
+
+
+});
+</script>
+</body>
+</html>

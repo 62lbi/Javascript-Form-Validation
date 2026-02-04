@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Order Form</title>
+</head>
+<body>
+<h2>Order Form</h2>
+<form id="orderForm">
+
+<p>
+<label>Product Name:</label>
+<input type="text" id="product">
+</p>
+<p>
+<label>Quantity:</label>
+<input type="number" id="quantity">
+</p>
+<p>
+<label>Delivery Time:</label>
+<input type="time" id="delivery">
+</p>
+<button type="submit">Order</button>
+</form>
+<p id="message"></p>
+<script>
+document.getElementById('orderForm').addEventListener('submit', function(event){
+    event.preventDefault();
+    const prod = document.getElementById('product').value.trim();
+    const quan = document.getElementById('quantity').value.trim();
+    const time = document.getElementById('delivery').value.trim();
+    const message = document.getElementById('message');
+    if (prod === '') {
+        message.innerHTML = "Product name must be filled";
+        return;
+    }
+    if (quan <= 0) {
+        message.innerHTML = "Quantity must be greater than 0";
+        return;
+    }
+    if (time === '') {
+        message.innerHTML ="Delivery time must be selected";
+        return;
+    }
+})
+
+</script>
+</body>
